@@ -7,6 +7,20 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
         
     }
 
+    // stage('clean_directory'){
+
+    //     bat 'RMDIR /S /q Zadanie_1_piplane'
+
+    // }
+
+    stage('Example') {
+        if (env.BRANCH_NAME == ${params.branch_name}) {
+            echo 'I only execute on the master branch'
+        } else {
+            echo 'I execute elsewhere'
+        }
+    }
+
     stage('git_log_in'){
 
         bat 'git config --global user.name "Zuzanna-Zielinska"'
@@ -16,25 +30,15 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
 
     stage('git_clone'){
 
-        echo "Current branch: ${env.BRANCH_NAME}"
-
-    }
-
-    stage('git_clone'){
-
         bat 'git clone https://github.com/Zuzanna-Zielinska/Zadanie_1_piplane.git'
 
     }
 
-    stage('git_barnch'){
-
-        dir('Zadanie_1_piplane') {
-            bat "cd C:/Mine/Jenkins_workspace/workspace/Zadanie_1/Zadanie_1_piplane"
-            bat 'git checkout main'
-            bat 'git branch'
+    post{
+        always{
+            echo "Jej!"
         }
-
-    }
+    }    
 
     stage('git_add_to_file'){
 

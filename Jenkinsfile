@@ -31,11 +31,11 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
 
     // }
 
-    // stage('git_clone'){
+    stage('git_clone'){
 
-    //     bat 'git clone https://github.com/Zuzanna-Zielinska/Zadanie_1_piplane.git'
+        bat 'git clone https://github.com/Zuzanna-Zielinska/Zadanie_1_piplane.git'
 
-    // }
+    }
 
     // post{
     //     always{
@@ -43,21 +43,21 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
     //     }
     // }    
 
-    // stage('git_add_to_file'){
+    stage('git_add_to_file'){
 
-    //     dir('Zadanie_1_piplane'){
-    //         bat 'echo "${params.value}" >> Newfile.txt'
-    //         bat 'git add Newfile.txt'
-    //         bat 'git commit -m "changing file"'                       
-    //     }
+        dir('Zadanie_1_piplane'){
+            bat 'echo "${params.value}" >> Newfile.txt'
+            bat 'git add Newfile.txt'
+            bat 'git commit -m "changing file"'                       
+        }
 
-    // }
+    }
 
-    // stage('clean_directory'){
+    stage('clean_directory'){
 
-    //     bat 'RMDIR /S /q Zadanie_1_piplane'
+        bat 'RMDIR /S /q Zadanie_1_piplane'
 
-    // }
+    }
 
     // stage('push_to_origin'){
 

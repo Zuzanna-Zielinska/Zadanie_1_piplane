@@ -7,11 +7,11 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
         
     }
 
-    // stage('clean_directory'){
+    stage('clean_directory'){
 
-    //     bat 'RMDIR /S /q Zadanie_1_piplane'
+        bat 'RMDIR /S /q Zadanie_1_piplane'
 
-    // }
+    }
 
     stage('Example') {
         if (env.BRANCH_NAME == '${params.branch_name}') {

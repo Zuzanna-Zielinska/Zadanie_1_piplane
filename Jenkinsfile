@@ -7,12 +7,6 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
         
     }
 
-    stage('clean_directory'){
-
-        bat 'RMDIR /S /q Zadanie_1_piplane'
-
-    }
-
     stage('git_log_in'){
 
         bat 'git config --global user.name "Zuzanna-Zielinska"'
@@ -43,6 +37,12 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
             bat 'git add Newfile.txt'
             bat 'git commit -m "changing file"'                       
         }
+
+    }
+
+    stage('clean_directory'){
+
+        bat 'RMDIR /S /q Zadanie_1_piplane'
 
     }
 

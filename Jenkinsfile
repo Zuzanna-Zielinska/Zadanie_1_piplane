@@ -14,7 +14,7 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
     // }
 
     stage('Example') {
-        if (env.BRANCH_NAME == ${params.branch_name}) {
+        if (env.BRANCH_NAME == '${params.branch_name}') {
             echo 'I only execute on the master branch'
         } else {
             echo 'I execute elsewhere'

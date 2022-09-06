@@ -16,6 +16,12 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
 
     stage('git_clone'){
 
+        echo "Current branch: ${env.BRANCH_NAME}"
+
+    }
+
+    stage('git_clone'){
+
         bat 'git clone https://github.com/Zuzanna-Zielinska/Zadanie_1_piplane.git'
 
     }

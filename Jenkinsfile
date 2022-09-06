@@ -9,7 +9,7 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
 
     stage('clean_directory'){
 
-        bat "echo 'garbage_text' >>Zadanie_1_piplane/garbage_file.txt"
+        // bat "echo 'garbage_text' >>Zadanie_1_piplane/garbage_file.txt"
         bat 'RMDIR /S /q Zadanie_1_piplane'
 
     }

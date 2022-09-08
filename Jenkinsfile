@@ -7,12 +7,12 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
         
     }
 
-    // stage('clean_directory'){
+    stage('clean_directory'){
 
-    //     // bat "echo 'garbage_text' >>Zadanie_1_piplane/garbage_file.txt"
-    //     bat 'RMDIR /S /q Zadanie_1_piplane'
+        // bat "echo 'garbage_text' >>Zadanie_1_piplane/garbage_file.txt"
+        bat 'RMDIR /S /q Zadanie_1_piplane'
 
-    // }
+    }
 
     stage('Example') {
         if (env.BRANCH_NAME == '${params.branch_name}') {
@@ -46,6 +46,9 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
     stage('git_add_to_file'){
 
         dir('Zadanie_1_piplane'){
+
+            bat "git checkout master"
+
             bat 'echo "${params.value}" >> Newfile.txt'
             bat 'git add Newfile.txt'
             bat 'git commit -m "changing file"'                       
@@ -66,4 +69,32 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
     //         bat "git push https://github.com/Zuzanna-Zielinska/Zadanie_1_piplane.git HEAD:main"
     //     }          
     // }-
+
+// node {
+//     stage ("Hello"){
+//        cleanWs()
+//        echo "Hello World!"
+//     }
+//     stage ("git tests"){
+//         // sh "rm -r workspace"
+//         sh "git config --global user.name kowalskiPL"
+//         sh "git config --global user.email patf117@gmail.com"
+//         dir ('workspace'){
+//             checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'patrykPass', url: 'git@github.com:kowalskiPL/jenkins_test.git']]])
+//             dir ('jenkins_test'){
+//                 sh "touch test-1.txt"
+//                 echo "something > test-1.txt"
+//                 sh "git checkout master"
+//                 sh "git add ."
+//                 sh "git commit -a -m 'some changes'"
+//                 sh "git branch"
+//                 sshagent(credentials: ['patrykPass']){
+//                     sh "git push origin master"
+//                 }
+//             }
+//         }
+//     }
+// }
+
+
 }

@@ -7,29 +7,33 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
         
     }
 
-    stage('clean_directory'){
-
-        // bat "echo 'garbage_text' >>Zadanie_1_piplane/garbage_file.txt"
-        bat 'RMDIR /S /q Zadanie_1_piplane'
-
+    stage ("Hello"){
+       cleanWs()
+       echo "Hello World!"
     }
 
-    stage('Example') {
-        if (env.BRANCH_NAME == '${params.branch_name}') {
-            echo "This is ${params.branch_name}"
-            
-        } else {
-            echo "This is NOT ${params.branch_name}!"
-            bat "git checkout ${params.branch_name}"
-        }
-    }
+    // stage('clean_directory'){
 
-    // stage('git_log_in'){
-
-    //     bat 'git config --global user.name "Zuzanna-Zielinska"'
-    //     bat 'git config --global user.email "zzielinska@student.agh.edu.pl"'
+    //     cleanWs()
 
     // }
+
+    // stage('Example') {
+    //     if (env.BRANCH_NAME == '${params.branch_name}') {
+    //         echo "This is ${params.branch_name}"
+            
+    //     } else {
+    //         echo "This is NOT ${params.branch_name}!"
+    //         // bat "git checkout ${params.branch_name}"
+    //     }
+    // }
+
+    stage('git_log_in'){
+
+        bat 'git config --global user.name "Zuzanna-Zielinska"'
+        bat 'git config --global user.email "zzielinska@student.agh.edu.pl"'
+
+    }
 
     stage('git_clone'){
 
@@ -47,7 +51,8 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
 
         dir('Zadanie_1_piplane'){
 
-            bat "git checkout master"
+            // bat "git checkout main"
+            checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: []])
 
             bat 'echo "${params.value}" >> Newfile.txt'
             bat 'git add Newfile.txt'
@@ -56,19 +61,27 @@ tree(5)''', description: 'Adds value to tree.py file', name: 'value'
 
     }
 
-    stage('clean_directory'){
+    stage('push_to_origin'){
 
-        bat 'RMDIR /S /q Zadanie_1_piplane'
+        // dir('Zadanie_1_piplane'){
+        //         sshUserPrivateKey(credentials: [private_key]){
 
+        //             // bat "git push origin main"
+        //             echo "aaa"
+        //         }
+        //     // bat 'git push origin main' 
+        //     // checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [url: git@github.com:Zuzanna-Zielinska/Zadanie_1_piplane.git]])
+        //     // bat "git push https://github.com/Zuzanna-Zielinska/Zadanie_1_piplane.git HEAD:main"
+        // }          
     }
 
-    // stage('push_to_origin'){
+//b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+// QyNTUxOQAAACCH6D4GzCtGrL/nyTVLOjBbq+P3xxhuJTHbs1831eQeHwAAAKAk+8HIJPvB
+// yAAAAAtzc2gtZWQyNTUxOQAAACCH6D4GzCtGrL/nyTVLOjBbq+P3xxhuJTHbs1831eQeHw
+// AAAEDePiscY9TisyThik54RZOsbVn/XUCFcmsjYA5Wbymu14foPgbMK0asv+fJNUs6MFur
+// 4/fHGG4lMduzXzfV5B4fAAAAHXp6aWVsaW5za2FAc3R1ZGVudC5hZ2guZWR1LnBs
+//private_key
 
-    //     dir('Zadanie_1_piplane'){
-    //         // bat 'git push origin main' 
-    //         bat "git push https://github.com/Zuzanna-Zielinska/Zadanie_1_piplane.git HEAD:main"
-    //     }          
-    // }-
 
 // node {
 //     stage ("Hello"){
